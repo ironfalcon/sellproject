@@ -13,4 +13,11 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('main');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+// продукция главная
+Route::get('/productions', 'ProductController@index')->name('productions.index');
