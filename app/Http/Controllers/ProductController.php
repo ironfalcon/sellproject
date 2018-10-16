@@ -27,6 +27,7 @@ class ProductController extends Controller
     public function create()
     {
         //
+          return view('productions.create');
     }
 
     /**
@@ -38,6 +39,7 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         //
+        dd($request);
     }
 
     /**

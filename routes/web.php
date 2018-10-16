@@ -23,3 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/productions', 'ProductController@index')->name('productions.index');
 // продукция просмотр
 Route::get('/productions/{id}/', 'ProductController@show')->name('productions.show');
+// создание продукции
+Route::get('/product/create', 'ProductController@create')->name('productions.create');
+// сохранение нового продукта
+Route::post('/product/store', 'ProductController@store')->name('productions.store');

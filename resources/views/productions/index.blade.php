@@ -2,8 +2,12 @@
 
 @section('content')
 <div class="container">
-    <h1>Продукция</h1>
-  <a href="{{ route('productions.create') }}" class="btn btn-success">Добавить товар</a>
+  <div class="row mb-2">
+    <h1 style="float:left;">Продукция</h1>
+</div>
+<div class="row mb-2">
+<a href="{{ route('productions.create') }}" class="btn btn-success mb-3" style="float:left;">Добавить товар</a>
+</div>
   @foreach($products as $product)
   <div class="card mb-5" style="width: 18rem;">
     <img class="card-img-top" src="{{asset('files/products_img/'.$product->photos()->first()->name) }}" alt="Card image cap">
