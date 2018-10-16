@@ -21,3 +21,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 // продукция главная
 Route::get('/productions', 'ProductController@index')->name('productions.index');
+// продукция просмотр
+Route::get('/productions/{id}/', 'ProductController@show')->name('productions.show');
