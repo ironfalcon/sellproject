@@ -23,10 +23,10 @@
         <input required type="text" class="form-control" name="type" id="type" value="{{ old('type')}}">
         <br>
         <label for="keywords">Ключевые слова:</label>
-        <input required type="text" class="form-control" name="meta-keywords" id="keywords" value="{{ old('meta-keywords')}}">
+        <input required type="text" class="form-control" name="meta_keywords" id="keywords" value="{{ old('meta_keywords')}}">
         <br>
         <label for="meta-description">Ключевые фразы:</label>
-        <input required type="text" class="form-control" name="meta-description" id="meta-description" value="{{ old('meta-description')}}">
+        <input required type="text" class="form-control" name="meta_description" id="meta-description" value="{{ old('meta_description')}}">
         <br>
         <label for="img">Изображение:</label>
         <input type="file" class="btn btn-success" id="img" name="image" value="{{ old('image')}}">

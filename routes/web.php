@@ -27,3 +27,5 @@ Route::get('/productions/{id}/', 'ProductController@show')->name('productions.sh
 Route::get('/product/create', 'ProductController@create')->name('productions.create');
 // сохранение нового продукта
 Route::post('/product/store', 'ProductController@store')->name('productions.store');
+// обновление записи
+Route::post('productions/{id}/', 'ProductController@update')->name('productions.update');

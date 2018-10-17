@@ -9,7 +9,7 @@
 <a href="{{ route('productions.create') }}" class="btn btn-success mb-3" style="float:left;">Добавить товар</a>
 </div>
   @foreach($products as $product)
-  <div class="card mb-5" style="width: 18rem;">
+  <div class="card mb-5 mr-4" style="width: 18rem; float:left;">
     <img class="card-img-top" src="{{asset('files/products_img/'.$product->photos()->first()->name) }}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">{{$product->name}}<br></h5>
