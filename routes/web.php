@@ -29,3 +29,5 @@ Route::get('/product/create', 'ProductController@create')->name('productions.cre
 Route::post('/product/store', 'ProductController@store')->name('productions.store');
 // обновление записи
 Route::post('productions/{id}/', 'ProductController@update')->name('productions.update');
+// удаление записи
+Route::delete('productions/delete/{id}/', 'ProductController@destroy')->name('productions.delete');

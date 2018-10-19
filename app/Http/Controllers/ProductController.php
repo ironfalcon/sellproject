@@ -121,6 +121,40 @@ class ProductController extends Controller
           $update_product->save();
           return redirect()->back();
         }
+
+        if($request->description){
+          $update_product = Product::find($id);
+          $update_product->description = $request->description;
+          $update_product->updated_at = Carbon::now('Europe/Samara');
+          $update_product->save();
+          return redirect()->back();
+        }
+
+        if($request->image){
+          if($request->file('image')) {
+            $image = $request->file('image');
+            $filename = time() . "." . $image->getClientOriginalExtension();
+            Image::make($image)->save(public_path('files/products_img/' . $filename));
+            $image = $filename;
+
+            $update_product = Product::find($id);
+
+            $update_product->photos()->create([
+              'product_id' => $update_product->id,
+              'name' => $image,
+              'alt' => 'ceo',
+              'created_at' => Carbon::now('Europe/Samara'),
+              'updated_at' => Carbon::now('Europe/Samara'),
+              ]);
+
+            $update_product->updated_at = Carbon::now('Europe/Samara');
+            $update_product->save();
+            return redirect()->back();
+
+          }
+          return redirect()->back();
+
+        }
     }
 
     /**
@@ -132,5 +166,9 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+       //  if(File::exists(public_path('files/metal_construction/drawing/'.MetalConstruction::find($id)->drawing)))
+       // {
+       //     File::delete(public_path('files/metal_construction/drawing/'.MetalConstruction::find($id)->drawing));
+       // }
     }
 }
