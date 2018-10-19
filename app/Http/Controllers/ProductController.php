@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Image;
 use App\Product;
+use App\Photo;
+use File;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -163,12 +165,14 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
         //
-       //  if(File::exists(public_path('files/metal_construction/drawing/'.MetalConstruction::find($id)->drawing)))
-       // {
-       //     File::delete(public_path('files/metal_construction/drawing/'.MetalConstruction::find($id)->drawing));
-       // }
+        if(File::exists(public_path('files/products_img/'.Photo::find($id)->name)))
+       {
+           File::delete(public_path('files/products_img/'.Photo::find($id)->name));
+          Photo::find($id)->delete();
+          return redirect()->back();
+       }
     }
 }

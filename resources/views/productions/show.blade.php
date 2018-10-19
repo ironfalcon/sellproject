@@ -7,7 +7,6 @@
       <a href="#" data-toggle="modal" data-target="#changeName">
         edit
       </a>
-
     </h1>
 
     <p>
@@ -22,12 +21,13 @@
       добавить
     </a>
     <br>
+
   @foreach($product->photos as $photo)
   <!-- вывод изображений -->
   <img src="{{ asset('files/products_img/'. $photo->name) }}" alt="Card image cap" style="width:200px;">
 
   <!-- форма удаления изображения -->
-      {!! Form::open(['method' => 'DELETE', 'route' => ['productions.delete', $product->id] ])!!}
+      {!! Form::open(['method' => 'DELETE', 'route' => ['productions.delete', $photo->id] ])!!}
       {{ csrf_field() }}
       <button alt="Удалить" style="margin-top:5px;" class="btn btn-danger" onclick="return confirm('Вы уверены?')">
       удалить
