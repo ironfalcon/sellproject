@@ -30,4 +30,9 @@ Route::post('/product/store', 'ProductController@store')->name('productions.stor
 // обновление записи
 Route::post('productions/{id}/', 'ProductController@update')->name('productions.update');
 // удаление записи
-Route::delete('productions/delete/{id}/', 'ProductController@destroy')->name('productions.delete');
+Route::delete('productions/delete_photo/{id}/', 'ProductController@destroy_photo')->name('productions.delete_photo');
+//удаление продукта
+Route::delete('productions/delete_product/{id}/', 'ProductController@destroy_product')->name('productions.delete_product');
+
+//заказ продукта
+Route::get('/product/order/{id}/', 'ProductController@order')->name('productions.order');

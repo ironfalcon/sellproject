@@ -72,7 +72,7 @@ class ProductController extends Controller
             $new_product->photos()->create([
               'product_id' => $new_product->id,
               'name' => $image,
-              'alt' => 'ceo',
+              'alt' => $request->alt,
               'created_at' => Carbon::now('Europe/Samara'),
               'updated_at' => Carbon::now('Europe/Samara'),
               ]);
@@ -124,6 +124,14 @@ class ProductController extends Controller
           return redirect()->back();
         }
 
+        if($request->price){
+          $update_product = Product::find($id);
+          $update_product->price = $request->price;
+          $update_product->updated_at = Carbon::now('Europe/Samara');
+          $update_product->save();
+          return redirect()->back();
+        }
+
         if($request->description){
           $update_product = Product::find($id);
           $update_product->description = $request->description;
@@ -144,7 +152,7 @@ class ProductController extends Controller
             $update_product->photos()->create([
               'product_id' => $update_product->id,
               'name' => $image,
-              'alt' => 'ceo',
+              'alt' => $request->alt,
               'created_at' => Carbon::now('Europe/Samara'),
               'updated_at' => Carbon::now('Europe/Samara'),
               ]);
@@ -165,7 +173,7 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy_photo($id)
     {
         //
         if(File::exists(public_path('files/products_img/'.Photo::find($id)->name)))
@@ -174,5 +182,27 @@ class ProductController extends Controller
           Photo::find($id)->delete();
           return redirect()->back();
        }
+    }
+
+    public function destroy_product($id)
+    {
+        //
+        $product = Product::find($id);
+
+        foreach($product->photos as $photo)
+        {
+          // if(File::exists(public_path('files/products_img/'.$photo->name)))
+            File::delete(public_path('files/products_img/'.$photo->name));
+            Photo::find($photo->id)->delete();
+        }
+        $product->delete();
+        return redirect()->back();
+    }
+
+    public function order($id)
+    {
+        //
+        $product = Product::find($id);
+        return view('productions.order',['product' => $product,]);
     }
 }

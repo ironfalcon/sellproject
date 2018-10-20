@@ -17,11 +17,11 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('name', 50);
             $table->string('description');
-            $table->float('price', 8, 2);
+            $table->float('price', 10, 2);
             $table->integer('count');
             $table->string('type', 50);
-            $table->string('meta-keywords', 100);
-            $table->string('meta-description', 100);
+            $table->string('meta_keywords', 100);
+            $table->string('meta_description', 100);
             $table->timestamps();
         });
     }

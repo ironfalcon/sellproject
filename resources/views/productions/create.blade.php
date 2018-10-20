@@ -5,7 +5,7 @@
     <h1>Добавление продукта</h1>
     <form enctype="multipart/form-data" action="{{ route('productions.store') }}" method="POST">
       {{ csrf_field() }}
-      <div class="form-group ">
+      <div class="form-group">
         <br>
         <label for="name">Название:</label>
         <input required type="text" class="form-control" name="name" id="name" value="{{ old('name')}}">
@@ -29,9 +29,16 @@
         <input required type="text" class="form-control" name="meta_description" id="meta-description" value="{{ old('meta_description')}}">
         <br>
         <label for="img">Изображение:</label>
-        <input type="file" class="btn btn-success" id="img" name="image" value="{{ old('image')}}">
         <br>
-        <button class="btn btn-success float-right">Добавить</button>
+        <div class="custom-file">
+          <label class="custom-file-label" for="customFile">Выберите фото</label>
+          <input type="file" class="custom-file-input" id="customFile" name="image" value="{{ old('image')}}">
+        </div>
+        <div class="form-group">
+          <label for="alt">CEO метка изображения:</label>
+          <input required type="text" class="form-control" name="alt" id="alt">
+        </div>
+        <button class="btn btn-success float-right mt-2 mb-2">Добавить</button>
       </div>
     </form>
 
