@@ -53,28 +53,17 @@
 
             <div class="form-group">
               <label for="count">Количество (едениц) продукта:</label>
-              <input type="number" name="count" id="count" class="form-control" value="{{old('count')}}">
+              <input required type="text" name="count" id="count" class="form-control" value="{{old('count')}}" onblur="isright(this);">
               <br>
-              <label for="type">Тип:</label>
-              <input required type="text" class="form-control" name="type" id="type" value="{{ old('type')}}">
+              <label for="phone">Контактный телефон:</label>
+              <input required type="text" class="form-control" name="phone" id="phone" value="{{ old('phone')}}">
               <br>
-              <label for="keywords">Ключевые слова:</label>
-              <input required type="text" class="form-control" name="meta_keywords" id="keywords" value="{{ old('meta_keywords')}}">
+              <label for="description">Комментарии к заказу:</label>
+              <textarea required name="description" id="description"  rows="5" class="summernote form-control input-text">{{old('description')}}</textarea>
               <br>
-              <label for="meta-description">Ключевые фразы:</label>
-              <input required type="text" class="form-control" name="meta_description" id="meta-description" value="{{ old('meta_description')}}">
-              <br>
-              <label for="img">Изображение:</label>
-              <br>
-              <div class="custom-file">
-                <label class="custom-file-label" for="customFile">Выберите фото</label>
-                <input type="file" class="custom-file-input" id="customFile" name="image" value="{{ old('image')}}">
-              </div>
-              <div class="form-group">
-                <label for="alt">CEO метка изображения:</label>
-                <input required type="text" class="form-control" name="alt" id="alt">
-              </div>
-              <button class="btn btn-success float-right mt-2 mb-2">Добавить</button>
+
+
+              <button class="btn btn-success float-right mt-2 mb-2">Оформить заказ</button>
             </div>
           </form>
 
@@ -83,6 +72,29 @@
 
     </div>
   </div>
+
+  <!-- Маска для телефона -->
+  <script>
+  $(function() {
+    $("#phone").mask("+7(000)000-00-00", {
+      placeholder: "+7(___)___-__-__",
+      clearIfNotMatch: true
+    });
+  });
+  </script>
+
+<!-- скрипт для валидации колличество продукта не больше чем на складе -->
+  <script>
+  function isright(obj)
+   {
+   var value= +obj.value.replace(/\D/g,'')||0;
+   if (value>{{ $product->count }}){
+     value={{ $product->count }};
+     alert( "Сейчас в наличии ммаксимум {{ $product->count }} едениц продукта" );}
+   if (value<1) value=1;
+   obj.value = value
+   }
+  </script>
 
 
 @endsection

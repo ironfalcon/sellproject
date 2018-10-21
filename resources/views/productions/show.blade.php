@@ -52,7 +52,9 @@
         </a>
         @endauth
       </p>
-    </div>
+      <a href="{{ route('productions.order', $product->id) }}" class="btn btn-primary">заказать</a>
+
+  </div>
 
 
 
@@ -141,7 +143,7 @@
             {{ csrf_field() }}
             <div class="custom-file">
               <label class="custom-file-label" for="customFile">Выберите фото</label>
-              <input type="file" class="custom-file-input" id="customFile" name="image">
+              <input type="file" class="custom-file-input" id="customFile" name="image" required>
             </div>
             <div class="form-group">
               <label for="alt">CEO метка изображения:</label>

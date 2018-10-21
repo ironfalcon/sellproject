@@ -22,6 +22,9 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
+
+
 
     </head>
     <body>
@@ -40,6 +43,11 @@
       <li class="nav-item">
         <a class="nav-link" href="{{ route('productions.index') }}">Продукты</a>
       </li>
+      @auth
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('productions.index') }}">Заказы</a>
+      </li>
+      @endauth
     </ul>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
