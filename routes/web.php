@@ -36,3 +36,7 @@ Route::delete('productions/delete_product/{id}/', 'ProductController@destroy_pro
 
 //заказ продукта
 Route::get('/product/order/{id}/', 'ProductController@order')->name('productions.order');
+// оформление  заказа продукта
+Route::post('/product/order_store/', 'ProductController@order_store')->name('productions.order_store');
+// просмотр заказов на сайте
+Route::get('/orders', 'ProductController@order_show')->name('order.show');

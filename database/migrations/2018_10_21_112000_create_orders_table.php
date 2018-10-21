@@ -18,6 +18,10 @@ class CreateOrdersTable extends Migration
             $table->integer('product_id');
             $table->string('client_name');
             $table->string('client_surname');
+            $table->string('phone');
+            $table->integer('count');
+            $table->string('contact_mail');
+            $table->string('description');
             $table->timestamps();
         });
     }

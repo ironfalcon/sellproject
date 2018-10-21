@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Image;
 use App\Product;
 use App\Photo;
+use App\Order;
 use File;
+use Illuminate\Support\Facades\Mail;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -205,4 +207,54 @@ class ProductController extends Controller
         $product = Product::find($id);
         return view('productions.order',['product' => $product,]);
     }
+
+    public function order_store(Request $request)
+    {
+        //
+        $this->validate($request, [
+            'client_name' => 'required',
+            'client_surname' => 'required',
+            'count' => 'required',
+            'phone' => 'required',
+            'mail' => 'required',
+            'description' => 'required',]);
+
+        $order = new Order();
+
+        $order->product_id = $request->product_id;
+        $order->client_name = $request->client_name;
+        $order->client_surname = $request->client_surname;
+        $order->phone = $request->phone;
+        $order->count = $request->count;
+        $order->contact_mail = $request->mail;
+        $order->description = $request->description;
+        $order->created_at = Carbon::now('Europe/Samara');
+        $order->save();
+
+
+        return redirect()->route('productions.index');
+
+
+        // $product = Product::find($id);
+        // return view('productions.order',['product' => $product,]);
+    }
+    // $table->increments('id');
+    // $table->integer('product_id');
+    // $table->string('client_name');
+    // $table->string('client_surname');
+    // $table->string('phone');
+    // $table->integer('count');
+    // $table->string('contact_mail');
+    // $table->string('description');
+    // $table->timestamps();
+
+    public function order_show()
+    {
+        //
+        $orders = Order::all();
+      
+        return view('productions.order_show',['orders' => $orders,]);
+    }
+
+
 }

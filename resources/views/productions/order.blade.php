@@ -31,20 +31,20 @@
 
           <h1>Форма заказа</h1>
           <!-- форма для заказа -->
-          <form enctype="multipart/form-data" action="{{ route('productions.store') }}" method="POST">
+          <form enctype="multipart/form-data" action="{{ route('productions.order_store') }}" method="POST">
             {{ csrf_field() }}
 
             <div class="form-row">
               <div class="col-md-6 mb-3">
-                <label for="validationCustom01">Имя</label>
-                <input type="text" class="form-control" id="validationCustom01" placeholder="Имя" value="{{ old('name')}}" required>
+                <label for="validationCustom01">Имя:</label>
+                <input type="text" class="form-control" id="validationCustom01" name="client_name" placeholder="Имя" value="{{ old('client_name')}}" required>
                 <div class="valid-feedback">
                   Looks good!
                 </div>
               </div>
               <div class="col-md-6 mb-3">
-                <label for="validationCustom02">Фамилия</label>
-                <input type="text" class="form-control" id="validationCustom02" placeholder="Фамилия" value="{{ old('surname')}}" required>
+                <label for="validationCustom02">Фамилия:</label>
+                <input type="text" class="form-control" id="validationCustom02" name="client_surname" placeholder="Фамилия" value="{{ old('client_surname')}}" required>
                 <div class="valid-feedback">
                   Looks good!
                 </div>
@@ -58,10 +58,14 @@
               <label for="phone">Контактный телефон:</label>
               <input required type="text" class="form-control" name="phone" id="phone" value="{{ old('phone')}}">
               <br>
+              <label for="exampleInputEmail1">Адресс электронной почты(email):</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mail" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">На указанную почту вы получите письмо с информацией о заказе.</small>
+              <br>
               <label for="description">Комментарии к заказу:</label>
               <textarea required name="description" id="description"  rows="5" class="summernote form-control input-text">{{old('description')}}</textarea>
               <br>
-
+              <input id="product_id" name="product_id" type="hidden" value="{{ $product->id }}">
 
               <button class="btn btn-success float-right mt-2 mb-2">Оформить заказ</button>
             </div>

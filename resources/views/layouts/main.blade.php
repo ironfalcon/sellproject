@@ -45,7 +45,7 @@
       </li>
       @auth
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('productions.index') }}">Заказы</a>
+        <a class="nav-link" href="{{ route('order.show') }}">Заказы</a>
       </li>
       @endauth
     </ul>
